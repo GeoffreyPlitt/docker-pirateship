@@ -1,7 +1,7 @@
 docker-pirateship
 =================
 
-A pirate ship built on Docker
+**A pirate ship built on Docker.**
 
 This project pulls several [Docker](http://www.docker.io/)'fied downloading tools and runs them in a [Vagrant](http://www.vagrantup.com/) VM.
 
