@@ -4,19 +4,19 @@ Vagrant.configure("2") do |config|
   
   config.vm.provision "docker" do |docker|
     docker.pull_images "geoffreyplitt/docker-couchpotato"
-    docker.pull_images "geoffreyplitt/docker-sickbeard"
     docker.pull_images "geoffreyplitt/docker-headphones"
-    docker.pull_images "geoffreyplitt/docker-sabnzb"
     docker.pull_images "geoffreyplitt/docker-megasearch"
+    docker.pull_images "geoffreyplitt/docker-sabnzb"
+    docker.pull_images "geoffreyplitt/docker-sickbeard"
     
     docker.run "geoffreyplitt/docker-couchpotato", args: "-d -p 5050:5050"
-    docker.run "geoffreyplitt/docker-sickbeard", args: "-d -p 8081:8081"
-    docker.run "geoffreyplitt/docker-headphones", args: "-d -p 8181:8181"
-    docker.run "geoffreyplitt/docker-sabnzb", args: "-d -p 8080:8080"
-    docker.run "geoffreyplitt/docker-megasearch", args: "-d -p 5000:5000"
+    docker.run "geoffreyplitt/docker-headphones",  args: "-d -p 8181:8181"
+    docker.run "geoffreyplitt/docker-megasearch",  args: "-d -p 5000:5000"
+    docker.run "geoffreyplitt/docker-sabnzb",      args: "-d -p 8080:8080"
+    docker.run "geoffreyplitt/docker-sickbeard",   args: "-d -p 8081:8081"
   end
 
-  for p in [5050,8081,8181,8080,5000]
+  for p in [5050,8181,5000,8080,8081]
     config.vm.network :forwarded_port, host: p, guest: p
   end
 
