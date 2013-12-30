@@ -18,6 +18,14 @@ $BOOTSTRAP_SCRIPT = <<EOF
   set -e # Stop on any error
   export DEBIAN_FRONTEND=noninteractive
   
+  # Make MEDIA folders if they don't exist
+  mkdir -p /vagrant/MEDIA/Movies
+  mkdir -p /vagrant/MEDIA/TV
+  mkdir -p /vagrant/MEDIA/Music
+  mkdir -p /vagrant/MEDIA/Complete
+  mkdir -p /vagrant/MEDIA/Incomplete
+
+
   # get docker images
   docker pull geoffreyplitt/docker-couchpotato
   docker pull geoffreyplitt/docker-headphones
