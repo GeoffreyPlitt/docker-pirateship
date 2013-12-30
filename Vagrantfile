@@ -2,13 +2,22 @@ Vagrant.require_version ">= 1.4.0"
 Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
 
-  # Ensure VM has Docker
-  config.vm.provision "docker"
+  # MEDIA folders - change FIRST param to your paths.
+  config.vm.network "private_network", type: :dhcp # This is necessary for NFS to work with DHCP
+  config.vm.synced_folder "~/Movies", "/vagrant/MEDIA/Movies", type: "nfs"
+  config.vm.synced_folder "~/TV", "/vagrant/MEDIA/TV", type: "nfs"
+  config.vm.synced_folder "~/Music", "/vagrant/MEDIA/Music", type: "nfs"
+  config.vm.synced_folder "~/Downloads", "/vagrant/MEDIA/Complete", type: "nfs"
+  config.vm.synced_folder "/tmp", "/vagrant/MEDIA/Incomplete", type: "nfs"
+  config.vm.synced_folder "/tmp", "/vagrant/MEDIA/NZB", type: "nfs"
 
   # Port mappings
   for p in [5050,8181,5000,8080,8081]
     config.vm.network :forwarded_port, host: p, guest: p
   end
+
+  # Ensure VM has Docker
+  config.vm.provision "docker"
 
   # Run the bootstrap script below
   config.vm.provision :shell, :inline => $BOOTSTRAP_SCRIPT
@@ -18,15 +27,6 @@ $BOOTSTRAP_SCRIPT = <<EOF
   set -e # Stop on any error
   export DEBIAN_FRONTEND=noninteractive
   
-  # Make MEDIA folders if they don't exist
-  mkdir -p /vagrant/MEDIA/Movies || true
-  mkdir -p /vagrant/MEDIA/TV || true
-  mkdir -p /vagrant/MEDIA/Music || true
-  mkdir -p /vagrant/MEDIA/Complete || true
-  mkdir -p /vagrant/MEDIA/Incomplete || true
-  mkdir -p /vagrant/MEDIA/NZB || true
-
-
   # get docker images
   docker pull geoffreyplitt/docker-couchpotato
   docker pull geoffreyplitt/docker-headphones
