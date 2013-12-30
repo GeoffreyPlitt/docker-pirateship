@@ -4,12 +4,12 @@ Vagrant.configure("2") do |config|
 
   # MEDIA folders - change FIRST param to your paths.
   config.vm.network "private_network", type: :dhcp # This is necessary for NFS to work with DHCP
-  config.vm.synced_folder "~/Movies", "/vagrant/MEDIA/Movies", type: "nfs"
-  config.vm.synced_folder "~/TV", "/vagrant/MEDIA/TV", type: "nfs"
+  config.vm.synced_folder "/Volumes/LaCie/Movies", "/vagrant/MEDIA/Movies", type: "nfs"
+  config.vm.synced_folder "/Volumes/LaCie/TV Shows", "/vagrant/MEDIA/TV", type: "nfs"
   config.vm.synced_folder "~/Music", "/vagrant/MEDIA/Music", type: "nfs"
-  config.vm.synced_folder "~/Downloads", "/vagrant/MEDIA/Complete", type: "nfs"
-  config.vm.synced_folder "/tmp", "/vagrant/MEDIA/Incomplete", type: "nfs"
-  config.vm.synced_folder "/tmp", "/vagrant/MEDIA/NZB", type: "nfs"
+  config.vm.synced_folder "/Volumes/LaCie/Downloads", "/vagrant/MEDIA/Complete", type: "nfs"
+  config.vm.synced_folder "/Volumes/LaCie/Incomplete", "/vagrant/MEDIA/Incomplete", type: "nfs"
+  config.vm.synced_folder "/Volumes/LaCie/NZB", "/vagrant/MEDIA/NZB", type: "nfs"
 
   # Port mappings
   for p in [5050,8181,5000,8080,8081]
