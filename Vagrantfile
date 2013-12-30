@@ -19,11 +19,11 @@ $BOOTSTRAP_SCRIPT = <<EOF
   export DEBIAN_FRONTEND=noninteractive
   
   # Make MEDIA folders if they don't exist
-  mkdir -p /vagrant/MEDIA/Movies
-  mkdir -p /vagrant/MEDIA/TV
-  mkdir -p /vagrant/MEDIA/Music
-  mkdir -p /vagrant/MEDIA/Complete
-  mkdir -p /vagrant/MEDIA/Incomplete
+  mkdir -p /vagrant/MEDIA/Movies || true
+  mkdir -p /vagrant/MEDIA/TV || true
+  mkdir -p /vagrant/MEDIA/Music || true
+  mkdir -p /vagrant/MEDIA/Complete || true
+  mkdir -p /vagrant/MEDIA/Incomplete || true
 
 
   # get docker images
