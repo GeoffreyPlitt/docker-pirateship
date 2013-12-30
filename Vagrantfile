@@ -24,6 +24,7 @@ $BOOTSTRAP_SCRIPT = <<EOF
   mkdir -p /vagrant/MEDIA/Music || true
   mkdir -p /vagrant/MEDIA/Complete || true
   mkdir -p /vagrant/MEDIA/Incomplete || true
+  mkdir -p /vagrant/MEDIA/NZB || true
 
 
   # get docker images

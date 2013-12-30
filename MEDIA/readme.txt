@@ -11,3 +11,4 @@ TV
 Music
 Complete
 Incomplete
+NZB
