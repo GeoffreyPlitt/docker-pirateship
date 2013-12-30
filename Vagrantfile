@@ -32,7 +32,7 @@ $BOOTSTRAP_SCRIPT = <<EOF
   docker run -d -p 5050:5050 -v /vagrant:/vagrant -entrypoint=/bin/bash geoffreyplitt/docker-couchpotato -l -c 'python CouchPotatoServer/CouchPotato.py --config_file /vagrant/configs/couchpotato.settings.conf'
   docker run -d -p 8181:8181 -v /vagrant:/vagrant -entrypoint=/bin/bash geoffreyplitt/docker-headphones -l -c 'cd headphones && python Headphones.py --config /vagrant/configs/headphones.config.ini'
   docker run -d -p 5000:5000 -v /vagrant:/vagrant -entrypoint=/bin/bash geoffreyplitt/docker-megasearch -l -c 'cd usntssearch/NZBmegasearch && ln -s /vagrant/configs/megasearch.custom_params.ini custom_params.ini && python mega2.py'
-  docker run -d -p 8080:8080 -v /vagrant:/vagrant -entrypoint=/bin/bash geoffreyplitt/docker-sabnzb -l -c 'sabnzbdplus -s 0.0.0.0:8080'
+  docker run -d -p 8080:8080 -v /vagrant:/vagrant -entrypoint=/bin/bash geoffreyplitt/docker-sabnzb -l -c 'mkdir -p .sabnzbd && ln -s /vagrant/configs/sabnzb.sabnzbd.ini .sabnzbd/sabnzbd.ini && sabnzbdplus -s 0.0.0.0:8080'
   docker run -d -p 8081:8081 -v /vagrant:/vagrant -entrypoint=/bin/bash geoffreyplitt/docker-sickbeard -l -c 'cd my-sickbeard-install && python SickBeard.py'
 
   echo
